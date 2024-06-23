@@ -110,7 +110,7 @@ public class PcLogic : MonoBehaviour
         
         healthBar.value = health;
         _walk.volume = speedP;
-        Debug.Log(speedP);
+        // Debug.Log(speedP);
     }
 
     public void Damage(float d)
@@ -118,5 +118,15 @@ public class PcLogic : MonoBehaviour
         health -= d;
         if (health < 0)
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void SpeedBoost()
+    {
+        _agent.speed *= 2;
+    }
+
+    public void Heal()
+    {
+        health = 100f;
     }
 }

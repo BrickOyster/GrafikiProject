@@ -14,7 +14,7 @@ public class GameMaster : MonoBehaviour
 {   
     private GameObject gameMaster;
 
-    public GameObject settingsPanel;
+    public GameObject settingsPanel, backSettingsButton;
     public GameObject lvlSelectPanlel;
     public GameObject menuPanel;
     public GameObject creditPanel;
@@ -92,9 +92,15 @@ public class GameMaster : MonoBehaviour
                 if(SceneManager.GetActiveScene().name != "Intro")
                 {
                     if(!settingsPanel.activeSelf)
+                    {
                         settingsPanel.SetActive(true);
+                        backSettingsButton.SetActive(false);
+                    }
                     else
+                    {
+                        backSettingsButton.SetActive(true);
                         settingsPanel.SetActive(false);
+                    }
                 }
                 else
                 {
@@ -102,11 +108,20 @@ public class GameMaster : MonoBehaviour
                     {
                         menuPanel.SetActive(false);
                         settingsPanel.SetActive(true);
+                        backSettingsButton.SetActive(true);
+                        lvlSelectPanlel.SetActive(false);
+                        creditPanel.SetActive(false);
+                        SecndCamPosition = new Vector3(1.6f,6.4f,1.8f);
+                        SecndCamRotation = new Quaternion(0,-0.6f,0,-0.8f);
                     }                    
                     else
                     {
                         menuPanel.SetActive(true);
                         settingsPanel.SetActive(false);
+                        lvlSelectPanlel.SetActive(false);
+                        creditPanel.SetActive(false);
+                        SecndCamPosition = new Vector3(0.2f,2.2f,-11.3f);
+                        SecndCamRotation = new Quaternion(0,0,0,1);
                     }
                         
                 }
