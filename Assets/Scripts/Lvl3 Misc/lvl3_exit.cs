@@ -14,6 +14,7 @@ public class lvl3_exit : MonoBehaviour
     public bool GotSecret = false;
     void Start ()
 	{
+        dm.GetComponentInChildren<DialogueManager>().StartDialogue(gameObject.GetComponents<Dialogue>()[1]);
         _animator = GetComponentInChildren<Animator>();
     }
 
