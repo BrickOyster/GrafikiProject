@@ -14,7 +14,7 @@ public class GameMaster : MonoBehaviour
 {   
     private GameObject gameMaster;
 
-    public GameObject settingsPanel, backSettingsButton;
+    public GameObject settingsPanel, backSettingsButton, backToMenuSettingsButton;
     public GameObject lvlSelectPanlel;
     public GameObject menuPanel;
     public GameObject creditPanel;
@@ -27,6 +27,7 @@ public class GameMaster : MonoBehaviour
     private void Awake()
     {
         Debug.Log(SceneManager.GetActiveScene().name);
+
         if (Instance != null)
         {
             Destroy(gameObject);
@@ -34,6 +35,8 @@ public class GameMaster : MonoBehaviour
         }
         Instance = this;
         DontDestroyOnLoad(gameObject);
+        if(SceneManager.GetActiveScene().name == "Intro")
+            menuPanel.SetActive(true);
     }
 
     private void Update() {
@@ -95,10 +98,10 @@ public class GameMaster : MonoBehaviour
                     {
                         settingsPanel.SetActive(true);
                         backSettingsButton.SetActive(false);
+                        backToMenuSettingsButton.SetActive(true);
                     }
                     else
                     {
-                        backSettingsButton.SetActive(true);
                         settingsPanel.SetActive(false);
                     }
                 }
@@ -109,6 +112,7 @@ public class GameMaster : MonoBehaviour
                         menuPanel.SetActive(false);
                         settingsPanel.SetActive(true);
                         backSettingsButton.SetActive(true);
+                        backToMenuSettingsButton.SetActive(false);
                         lvlSelectPanlel.SetActive(false);
                         creditPanel.SetActive(false);
                         SecndCamPosition = new Vector3(1.6f,6.4f,1.8f);
@@ -132,6 +136,9 @@ public class GameMaster : MonoBehaviour
 
     public void SceneTransition(String scene) 
     {
+        if(scene == "Intro")
+            settingsPanel.SetActive(false);
+
         SecndCamPosition = new Vector3(0.2f,2.2f,-11.3f);
         SecndCamRotation = new Quaternion(0,0,0,1);
         menuPanel.SetActive(false);
